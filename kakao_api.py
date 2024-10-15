@@ -1,3 +1,5 @@
+# 2024-10-16
+# 카카오톡 메시지 전송이였지만 make.com 으로 notification 수정으로 인해 사용하지 않음
 import os
 import json
 
