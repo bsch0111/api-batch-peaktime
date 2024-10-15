@@ -23,10 +23,12 @@ class PeaktimeAPI:
     }
     
     def _set_url(self, plane_name : str) -> None:
-        if plane_name == 'bietet':
-            self.url = 'https://api.basecamp.team/product/list/2528'
-        elif plane_name == 'jinair':
-            self.url = 'https://api.basecamp.team/product/list/2575'
+        url = {
+            'vietjet' : 'https://api.basecamp.team/product/list/2528',
+            'jinair' : 'https://api.basecamp.team/product/list/2575'
+        }
+        self.url = url[plane_name]
+
     
     def set_params(self, params : dict) -> None:
         self.params = params
@@ -36,12 +38,19 @@ class PeaktimeAPI:
         return response
     
     def find_ticket(self, plane_name : str) -> bool:
+        """
+        plane_name : str
+        return : bool
+
+        True : 구매할 수 있는 티켓이 있음
+        False : 구매할 수 있는 티켓이 없음
+        """
         self._set_url(plane_name)
         response = self.get_response()
         response_json = response.json()['list']
         
 
-        if plane_name == 'bietet':
+        if plane_name == 'vietjet':
             response = self.get_response()
             response_json = response.json()['list']
             if response_json == []:
@@ -49,7 +58,7 @@ class PeaktimeAPI:
             else:
                 return True
         elif plane_name == 'jinair':
-            if response_json[0]['status_id'] == '3':
+            if response_json[0]['status_id'] == 4:
                 return False
             else:
                 return True
