@@ -4,14 +4,13 @@ import os
 
 load_dotenv()
 
-MAKE_COM_WEBHOOK_URL = os.getenv('MAKE_COM_WEBHOOK_URL')
+MAKE_COM_WEBHOOK_URL = os.getenv("MAKE_COM_WEBHOOK_URL")
+
 
 class MakeComApi:
     def __init__(self):
         self.url = MAKE_COM_WEBHOOK_URL
-        self.headers = {
-            'Content-Type': 'application/json'
-        }
+        self.headers = {"Content-Type": "application/json"}
 
     def send_notification(self, data: dict):
 
