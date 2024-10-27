@@ -2,17 +2,15 @@
 
 import time
 import logging
+from custrom_logging import set_logging
+
 from peaktime_api import PeaktimeAPI
 from make_com_api import MakeComApi
 
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-
 ticket_available = False
 SLEEP_TIME = 600
+set_logging()
+logger = logging.getLogger(__name__)
 
 while ticket_available == False:
 
