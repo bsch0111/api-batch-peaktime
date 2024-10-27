@@ -1,0 +1,21 @@
+name : Release Drafter
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+jobs:
+  update-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  
+
+      - name: Generate release notes
+        uses: |
+          gh release create ${{ github.ref_name}} \
+          --title "${{ github.ref_name}}"
+          --notes "$(git log $(git describe --tags --abbrev=0)...HEAD --pretty=format:'* %s (%h)')"

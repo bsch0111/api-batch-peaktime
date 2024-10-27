@@ -10,3 +10,6 @@
 ![sensor_output](https://i.imgur.com/aZdrRmb.png)
 - make.com 시나리오
 ![make.com](https://i.imgur.com/QbncuBV.png)
+
+## PR 전
+- black 기반 파일 포맷팅 수행(black *.py)
