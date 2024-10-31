@@ -13,15 +13,23 @@ jobs:
         python-version: ["3.10"]
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install black==24.10.0
+    
+    - name: Check Black
+      id: black_check
+      run: black --check $(git ls-files '*.py')
+
     - name: Format with black
+      if: failure() # only run if black fails
       run: |
         black $(git ls-files '*.py')
         git config --global user.email "bsch0111@naver.com"
@@ -29,3 +37,5 @@ jobs:
         git add .
         git commit -m "Format with black"
         git push origin main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITBOT_TOKEN }}
