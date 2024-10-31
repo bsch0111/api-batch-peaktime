@@ -1,9 +1,12 @@
 name: Black
 
-on: [push]
+on:
+  pull_request_target:
+    types: [closed]
 
 jobs:
   build:
+    if : github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,4 +28,4 @@ jobs:
         git config --global user.name "bsch0111"
         git add .
         git commit -m "Format with black"
-        git push
+        git push origin main
