@@ -1,5 +1,9 @@
+import os
 import requests
+from dotenv import load_dotenv
 
+load_dotenv()
+PEAKTIME_PRODUCT_URL = os.getenv("PEAKTIME_PRODUCT_URL")
 
 class PeaktimeAPI:
 
@@ -25,15 +29,15 @@ class PeaktimeAPI:
 
     def _set_url(self, plane_name: str) -> None:
         url = {
-            "vietjet": "https://api.basecamp.team/product/list/2528",
-            "jinair": "https://api.basecamp.team/product/list/2575",
+            "vietjet": f"{PEAKTIME_PRODUCT_URL}/2528",
+            "jinair": f"{PEAKTIME_PRODUCT_URL}/2575",
         }
         self.url = url[plane_name]
 
     def set_params(self, params: dict) -> None:
         self.params = params
 
-    def get_response(self) -> dict:
+    def get_response(self) -> requests.Response:
         response = requests.get(self.url, headers=self.headers, params=self.params)
         return response
 
