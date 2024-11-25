@@ -14,7 +14,7 @@ for page in range(1, 24+1):
     headers = {
         'accept': 'application/json',
         'accept-language': 'ko,ko-KR;q=0.9,en-HK;q=0.8,en;q=0.7',
-        'authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJST0xFUyI6WyJVU0VSIl0sInN1YiI6ImJzY2gwMTExQHVvcy5hYy5rciIsImlhdCI6MTczMjQzMTY4OSwiZXhwIjoxNzMyNTE4MDg5fQ.VcNZqP-3XtWXBSZUEsjtTLZm4wlHComQh_LYTIBAA8Ei_WCNK8DwJhBZ6p4nHBnwMeYmSCX_d9vlUdCuuZ7FWg',
+        'authorization': 'Bearer',
         'origin': 'https://www.innoforest.co.kr',
         'priority': 'u=1, i',
         'referer': 'https://www.innoforest.co.kr/',
