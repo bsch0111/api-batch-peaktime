@@ -2,9 +2,13 @@ import requests
 import json
 from datetime import datetime
 import pandas as pd
+import os
+from dotenv import load_dotenv
 
 # What time is now?
 # TODO: 수집 시간 출력하기
+load_dotenv()
+Bearer = os.getenv("Bearer")
 
 import requests
 
@@ -14,7 +18,7 @@ for page in range(1, 24+1):
     headers = {
         'accept': 'application/json',
         'accept-language': 'ko,ko-KR;q=0.9,en-HK;q=0.8,en;q=0.7',
-        'authorization': 'Bearer',
+        'authorization': f'Bearer {Bearer}',
         'origin': 'https://www.innoforest.co.kr',
         'priority': 'u=1, i',
         'referer': 'https://www.innoforest.co.kr/',
